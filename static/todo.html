@@ -53,7 +53,29 @@
             type: "POST",
             url:'https://shimigami-todo.herokuapp.com/programs',
             data: data1,
-            success: function (data, status, xhr) {disp();
+            success: function (data, status, xhr) {
+                var element={name:name,amount,amount,id:JSON.parse(data).id}
+                var t=`<div class="row" id="row${element.id}">
+                                            <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>
+                                                <div class="card-header">
+                                                ${element.name}
+                                                </div>
+                                                <div class="card-body">
+                                                <h5 class="card-title" id="amount${element.id}">${element.amount}</h5>
+                                                <button class="btn btn-danger" onclick='remove(${element.id})';>remove</button>
+                                                <div class="u" style="margin-top:15px;">
+                                                <input type="text" id='up${element.id}' class="form-control">
+                                                <button class="btn btn-info" style="margin-top:5px;" onclick='update(${element.id})'>update</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>`
+                 $(".b").append(t);
+                
+
+
+                console.log(element)
     }           
         })
     })

@@ -13,12 +13,12 @@ app.post('/programs',(req,res)=>{
     x.id=idx;
     idx+=1;
     data.push(x);
-    res.send("done");
+    res.send(JSON.stringify({id:x.id}));
 })
 app.delete('/programs/:id',(req,res)=>{
     console.log(req.params.id);
     data=data.filter((x)=>{return (x.id!=req.params.id)})
-    res.send("done");
+    res.send("done1");
 })
 app.get("/programs",(req,res)=>{
     res.json(data);
@@ -31,7 +31,7 @@ app.put("/programs/:id",(req,res)=>{
             x.amount=req.body.amount;
         }
     }
-    res.send("done");
+    res.send("done2");
 })
 var port=process.env.PORT||8000
 app.listen(port,8000,()=>{

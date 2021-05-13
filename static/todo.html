@@ -49,15 +49,17 @@
             var name=document.querySelector('#name').value;
             var amount=document.querySelector("#amount").value;
             var data1={name:name,amount:amount};
-            
-           $.post('https://shimigami-todo.herokuapp.com/programs',data1,()=>{
-               console.log("Added");
-           })
-           disp();
+            $.ajax({
+            type: "POST",
+            url:'https://shimigami-todo.herokuapp.com/programs',
+            data: data1,
+            success: function (data, status, xhr) {disp();
+    }           
         })
-
+    })
         function remove(id)
         {
+            console.log(id);
             $.ajax({
             url: `https://shimigami-todo.herokuapp.com/programs/${id}`,
             type: 'DELETE',

@@ -33,6 +33,7 @@ app.put("/programs/:id",(req,res)=>{
     }
     res.send("done");
 })
-app.listen(8000,()=>{
+var port=process.env.PORT||8000
+app.listen(port,8000,()=>{
     console.log("server is listening");
 })

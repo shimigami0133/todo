@@ -50,7 +50,7 @@
             var amount=document.querySelector("#amount").value;
             var data1={name:name,amount:amount};
             
-           $.post('/programs',data1,()=>{
+           $.post('https://shimigami-todo.herokuapp.com/programs',data1,()=>{
                console.log("Added");
            })
            disp();
@@ -59,7 +59,7 @@
         function remove(id)
         {
             $.ajax({
-            url: `/programs/${id}`,
+            url: `https://shimigami-todo.herokuapp.com/programs/${id}`,
             type: 'DELETE',
             success:function(){
                 console.log("Deleted")
@@ -72,7 +72,7 @@
             var amount=document.querySelector(`#up${id}`).value
             //console.log(id,amount);
             $.ajax({
-                url: `/programs/${id}`,
+                url: `https://shimigami-todo.herokuapp.com/programs/${id}`,
                 type: 'PUT',
                 data: {amount:amount},
                 success: function(data) {
@@ -84,7 +84,7 @@
         function disp()
         {
                 $('.b').empty();
-                $.get("/programs",function(data,status){
+                $.get("https://shimigami-todo.herokuapp.com/programs",function(data,status){
                         data.forEach(element => {
                                                 var t=`<div class="row" id="row${element.id}">
                                             <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>

@@ -49,11 +49,11 @@
             var name=document.querySelector('#name').value;
             var amount=document.querySelector("#amount").value;
             var data1={name:name,amount:amount};
-            console.log(data1);
+            
            $.post('http://127.0.0.1:8000/programs',data1,()=>{
                console.log("Added");
            })
-            disp();
+           disp();
         })
 
         function remove(id)
@@ -65,7 +65,7 @@
                 console.log("Deleted")
             }
         });
-        disp()      
+            $(`#row${id}`).remove()    
         }
         function update(id)
         {
@@ -79,20 +79,20 @@
                     console.log('Updated');
                 }
             });
-            disp();
+          document.querySelector(`#amount${id}`).innerHTML=amount;
         }
         function disp()
         {
                 $('.b').empty();
                 $.get("http://127.0.0.1:8000/programs",function(data,status){
                         data.forEach(element => {
-                                                var t=`<div class="row">
-                                            <div class="card" style="width:500px;margin-top:50px;" >
+                                                var t=`<div class="row" id="row${element.id}">
+                                            <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>
                                                 <div class="card-header">
                                                 ${element.name}
                                                 </div>
                                                 <div class="card-body">
-                                                <h5 class="card-title">${element.amount}</h5>
+                                                <h5 class="card-title" id="amount${element.id}">${element.amount}</h5>
                                                 <button class="btn btn-danger" onclick='remove(${element.id})';>remove</button>
                                                 <div class="u" style="margin-top:15px;">
                                                 <input type="text" id='up${element.id}' class="form-control">

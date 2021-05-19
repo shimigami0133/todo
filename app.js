@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://abhiram0133:abhiram1234@cluster0.avpng.mongodb.n
 const router = require('./route/todo_route')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-app.use(cors);
+app.use(cors());
 app.use('/programs', router)
 app.get('/todo', (req, res) => {
     res.sendFile(__dirname + "/static/todo.html")

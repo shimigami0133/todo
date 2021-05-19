@@ -54,7 +54,8 @@
             url:'https://shimigami-todo.herokuapp.com/programs',
             data: data1,
             success: function (data, status, xhr) {
-                var element={name:name,amount,amount,id:JSON.parse(data).id}
+                var element={name:name,amount,amount,id:data}
+                console.log(element)
                 var t=`<div class="row" id="row${element.id}">
                                             <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>
                                                 <div class="card-header">
@@ -62,26 +63,22 @@
                                                 </div>
                                                 <div class="card-body">
                                                 <h5 class="card-title" id="amount${element.id}">${element.amount}</h5>
-                                                <button class="btn btn-danger" onclick='remove(${element.id})';>remove</button>
+                                                <button class="btn btn-danger" onclick="remove('${element.id}')">remove</button>
                                                 <div class="u" style="margin-top:15px;">
                                                 <input type="text" id='up${element.id}' class="form-control">
-                                                <button class="btn btn-info" style="margin-top:5px;" onclick='update(${element.id})'>update</button>
+                                                <button class="btn btn-info" style="margin-top:5px;" onclick="update('${element.id}')">update</button>
                                                 </div>
                                                 </div>
                                             </div>
                                             </div>
                                         </div>`
                  $(".b").append(t);
-                
-
-
-                console.log(element)
     }           
         })
     })
         function remove(id)
         {
-            console.log(id);
+           // console.log(id);
             $.ajax({
             url: `https://shimigami-todo.herokuapp.com/programs/${id}`,
             type: 'DELETE',
@@ -93,8 +90,9 @@
         }
         function update(id)
         {
-            var amount=document.querySelector(`#up${id}`).value
-            //console.log(id,amount);
+            // console.log(id);
+           var amount=document.querySelector(`#up${id}`).value
+            console.log(id,amount);
             $.ajax({
                 url: `https://shimigami-todo.herokuapp.com/programs/${id}`,
                 type: 'PUT',
@@ -110,17 +108,18 @@
                 $('.b').empty();
                 $.get("https://shimigami-todo.herokuapp.com/programs",function(data,status){
                         data.forEach(element => {
-                                                var t=`<div class="row" id="row${element.id}">
-                                            <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>
+                            console.log(element._id)
+                                                var t=`<div class="row" id="row${element._id}">
+                                            <div class="card" style="width:500px;margin-top:50px;" id=${element._id}>
                                                 <div class="card-header">
                                                 ${element.name}
                                                 </div>
                                                 <div class="card-body">
-                                                <h5 class="card-title" id="amount${element.id}">${element.amount}</h5>
-                                                <button class="btn btn-danger" onclick='remove(${element.id})';>remove</button>
+                                                <h5 class="card-title" id="amount${element._id}">${element.amount}</h5>
+                                                <button class="btn btn-danger" onclick="remove('${element._id}')">remove</button>
                                                 <div class="u" style="margin-top:15px;">
-                                                <input type="text" id='up${element.id}' class="form-control">
-                                                <button class="btn btn-info" style="margin-top:5px;" onclick='update(${element.id})'>update</button>
+                                                <input type="text" id='up${element._id}' class="form-control">
+                                                <button class="btn btn-info" style="margin-top:5px;" onclick="update('${element._id}')">update</button>
                                                 </div>
                                                 </div>
                                             </div>

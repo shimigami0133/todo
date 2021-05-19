@@ -1,38 +1,17 @@
 const express=require('express')
 const app=express()
+const mongoose=require('mongoose')
+mongoose.connect('mongodb+srv://abhiram0133:abhiram1234@cluster0.avpng.mongodb.net/database1?retryWrites=true&w=majority',()=>{
+    console.log("db connected")
+})
+const router=require('./route/todo_route')
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-var idx=3;
-var data=[{name:"python",amount:10,id:0},{name:"c",amount:0,id:2}]
-app.use(express.static('C:/Users/abhiram reddy/Desktop/bz/static'))
+app.use('/programs',router)
 app.get('/todo',(req,res)=>{
     res.sendFile(__dirname+"/static/todo.html")
 })
-app.post('/programs',(req,res)=>{
-    var x=req.body;
-    x.id=idx;
-    idx+=1;
-    data.push(x);
-    res.send(JSON.stringify({id:x.id}));
-})
-app.delete('/programs/:id',(req,res)=>{
-    console.log(req.params.id);
-    data=data.filter((x)=>{return (x.id!=req.params.id)})
-    res.send("done1");
-})
-app.get("/programs",(req,res)=>{
-    res.json(data);
-})
-app.put("/programs/:id",(req,res)=>{
-    for(x of data)
-    {
-        if(x.id==req.params.id)
-        {
-            x.amount=req.body.amount;
-        }
-    }
-    res.send("done2");
-})
+
 var port=process.env.PORT||8000
 app.listen(port,8000,()=>{
     console.log("server is listening");

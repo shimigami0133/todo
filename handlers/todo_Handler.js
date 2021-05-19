@@ -2,7 +2,7 @@ const todo=require('../models/todo.js')
 exports.add_todo=async(req,res)=>{
    
  const t= await todo.create(req.body);
-    res.send(t._id)
+    res.json(t)
 }
 
 exports.get_todo=async(req,res)=>{

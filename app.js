@@ -6,7 +6,6 @@ mongoose.connect('mongodb+srv://abhiram0133:abhiram1234@cluster0.avpng.mongodb.n
     console.log("db connected")
 })
 const router = require('./route/todo_route')
-app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use('/programs', router)

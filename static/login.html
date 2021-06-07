@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .container{
+            position:relative;
+            top:200px;
+        }
+        .display-5{
+            margin-bottom:25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container a">
+       <u><h1 class="display-5">Login</h1></u> 
+        <form action="/authen" method="POST">
+            <label class="form-label">Username</label>
+            <input type="text" name="username" id="name" class="form-control">
+
+            <label class="form-label">Password</label>
+            <input type="password" name="p" id="p" class="form-control">
+
+            <button class="btn btn-primary" style="margin-top:10px;">Submit</button>
+        </form>
+        <a href="/register">Not Login</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function sub()
+        {
+            var name=document.querySelector('#name').value;
+        var pswd=document.querySelector("#p").value;
+        $.post("http://127.0.0.1:8000/authen",{username:name,password:pswd},function(data){
+            console.log(data+" done")
+            if(data==="true")
+            {
+                window.location.href="http://127.0.0.1:8000/todo"
+            }
+            else
+            {
+                window.location.href="http://127.0.0.1:8000/register"
+            }
+        });
+        }
+    </script>
+</body>
+</html>

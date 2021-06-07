@@ -23,7 +23,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-
+    <div class="row">
+        <a href="/logout" style="float:left" id="logout">Logout</a>
+    </div>
     <div class="row">
         <div class="col-mid-12">
             <h1 class="display-3">Course Details</h1>
@@ -55,7 +57,6 @@
             data: data1,
             success: function (data, status, xhr) {
                 var element={name:name,amount,amount,id:data}
-                console.log(element)
                 var t=`<div class="row" id="row${element.id}">
                                             <div class="card" style="width:500px;margin-top:50px;" id=${element.id}>
                                                 <div class="card-header">
